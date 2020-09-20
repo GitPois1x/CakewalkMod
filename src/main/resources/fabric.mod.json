@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "cakewalk",
+  "version": "${version}",
+  "name": "CakeWalk",
+  "description": "This is an example description!",
+  "authors": [
+    "Pois1x, Globox_Z"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/cakewalk/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.cakewalk.CakeWalkMain"
+    ],
+    "client": [
+      "net.cakewalk.CakeWalkClient"
+    ]
+  },
+  "mixins": [
+    "cakewalk.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
