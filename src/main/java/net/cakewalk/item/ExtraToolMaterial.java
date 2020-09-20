@@ -3,13 +3,14 @@ package net.cakewalk.item;
 import java.util.function.Supplier;
 
 import net.cakewalk.init.ItemInit;
+import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
 
 public enum ExtraToolMaterial implements ToolMaterial {
-  LEAD(0, 32, 1.2F, 0.0F, 0, () -> {
-    return Ingredient.ofItems(ItemInit.LEAD_INGOT_ITEM);
+  LEAD(0, 200, 1.2F, 3.0F, 24, () -> {
+    return Ingredient.ofItems(Items.IRON_INGOT);
   });
 
   private final int miningLevel;
