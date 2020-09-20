@@ -9,6 +9,7 @@ public class CakeWalkMain implements ModInitializer {
   public void onInitialize() {
     BlockInit.init();
     ItemInit.init();
+    OreGen.init();
   }
 
 }
