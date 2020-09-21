@@ -3,7 +3,9 @@
   "minVersion": "0.8",
   "package": "net.cakewalk.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
+  "mixins": [
+    "DefaultBiomeFeaturesMixin"
+  ],
   "client": [],
   "injectors": {
     "defaultRequire": 1

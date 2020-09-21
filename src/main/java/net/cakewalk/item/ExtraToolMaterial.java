@@ -2,7 +2,6 @@ package net.cakewalk.item;
 
 import java.util.function.Supplier;
 
-import net.cakewalk.init.ItemInit;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
