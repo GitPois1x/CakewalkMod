@@ -12,11 +12,11 @@ import net.minecraft.world.gen.feature.OreFeatureConfig;
 public class GenInit {
   public static ConfiguredFeature<?, ?> ORE_LEAD = Feature.ORE
       .configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD,
-          BlockInit.LEAD_ORE_BLOCK.getDefaultState(), 2)) // vein size
+          BlockInit.LEAD_ORE_BLOCK.getDefaultState(), 4)) // vein size
       .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(0, // bottom offset
           4, // min y level
           24))) // max y level
-      .spreadHorizontally().repeat(3); // number of veins per chunk
+      .spreadHorizontally().repeat(7); // number of veins per chunk
 
   public static void init() {
     Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier("cakewalk", "ore_lead_overworld"), ORE_LEAD);
