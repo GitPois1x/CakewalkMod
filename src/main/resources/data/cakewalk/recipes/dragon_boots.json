@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:netherite_boots"
+  },
+  "addition": {
+    "item": "cakewalk:dragon_scale"
+  },
+  "result": {
+    "item": "cakewalk:dragon_boots"
+  }
+}

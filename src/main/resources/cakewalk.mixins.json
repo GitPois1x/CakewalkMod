@@ -4,7 +4,8 @@
   "package": "net.cakewalk.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "DefaultBiomeFeaturesMixin"
+    "DefaultBiomeFeaturesMixin",
+    "EnderDragonEntityMixin"
   ],
   "client": [],
   "injectors": {

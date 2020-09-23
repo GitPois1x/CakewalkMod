@@ -1,21 +1,21 @@
 package net.cakewalk.item;
 
-import net.cakewalk.init.ItemInit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
-public class LeadLinedArmorMaterial implements ArmorMaterial {
+public class DragonArmorMaterial implements ArmorMaterial {
   private static final int[] BASE_DURABILITY = new int[] { 14, 15, 16, 12 };
-  private static final int[] PROTECTION_AMOUNTS = new int[] { 2, 5, 6, 2 };
+  private static final int[] PROTECTION_AMOUNTS = new int[] { 3, 6, 8, 3 };
 
   @Override
   public int getDurability(EquipmentSlot equipmentSlot) {
-    return BASE_DURABILITY[equipmentSlot.getEntitySlotId()] * 15;
+    return BASE_DURABILITY[equipmentSlot.getEntitySlotId()] * 37;
   }
 
   @Override
@@ -25,22 +25,22 @@ public class LeadLinedArmorMaterial implements ArmorMaterial {
 
   @Override
   public int getEnchantability() {
-    return 9;
+    return 15;
   }
 
   @Override
   public SoundEvent getEquipSound() {
-    return SoundEvents.ITEM_ARMOR_EQUIP_IRON;
+    return SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE;
   }
 
   @Override
   public Ingredient getRepairIngredient() {
-    return Ingredient.ofItems(ItemInit.LEAD_INGOT_ITEM);
+    return Ingredient.ofItems(Items.GOLD_INGOT);
   }
 
   @Environment(EnvType.CLIENT)
   public String getName() {
-    return "lead_lined_armor";
+    return "dragon_armor";
   }
 
   @Override

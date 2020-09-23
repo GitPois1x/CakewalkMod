@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "cakewalk",
-  "version": "${version}",
+  "version": "1.0.0",
   "name": "CakeWalk",
   "description": "This is an example description!",
   "authors": [
@@ -9,9 +9,9 @@
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/GitPois1x/CakewalkMod"
   },
-  "license": "CC0-1.0",
+  "license": "GLPv3",
   "icon": "assets/cakewalk/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -32,5 +32,6 @@
   },
   "suggests": {
     "flamingo": "*"
-  }
+  },
+  "accessWidener": "cakewalk.aw"
 }
