@@ -7,7 +7,9 @@
     "DefaultBiomeFeaturesMixin",
     "EnderDragonEntityMixin"
   ],
-  "client": [],
+  "client": [
+    "HeadFeatureRendererMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
