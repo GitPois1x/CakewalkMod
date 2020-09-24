@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "cakewalk:block/pylon_base_block",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "cakewalk:block/pylon_base_block"
+    },
+    "facing=north": {
+      "model": "cakewalk:block/pylon_base_block",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "cakewalk:block/pylon_base_block",
+      "y": 180
+    }
+  }
+}

@@ -18,6 +18,7 @@ public class ItemInit {
                         new Item.Settings().group(ItemGroup.COMBAT));
         public static final DragonScaleItem DRAGON_SCALE_ITEM = new DragonScaleItem(
                         new Item.Settings().group(ItemGroup.MISC));
+        public static final WarpStonePlacedItem WARP_STONE_PLACED_ITEM = new WarpStonePlacedItem(new Item.Settings());
         // Armor
         public static final ArmorMaterial LEAD_LINED_ARMOR_MATERIAL = new LeadLinedArmorMaterial();
         public static final Item LEAD_LINED_HELMET = new LeadLinedArmor(LEAD_LINED_ARMOR_MATERIAL, EquipmentSlot.HEAD,
@@ -56,6 +57,8 @@ public class ItemInit {
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "warp_stone"), WARP_STONE_ITEM);
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "cutlass"), CUTLASS_ITEM);
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "dragon_scale"), DRAGON_SCALE_ITEM);
+                Registry.register(Registry.ITEM, new Identifier("cakewalk", "warp_stone_placed"),
+                                WARP_STONE_PLACED_ITEM);
                 // Armor
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "lead_lined_helmet"), LEAD_LINED_HELMET);
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "lead_lined_chestplate"),

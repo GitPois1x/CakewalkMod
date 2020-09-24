@@ -1,8 +1,11 @@
 {
   "block.cakewalk.lead_block": "Lead Block",
   "block.cakewalk.lead_ore": "Lead Ore",
+  "block.cakewalk.pylon_base_block": "Pylon Base",
+
   "item.cakewalk.lead_ingot": "Lead Ingot",
   "item.cakewalk.warp_stone": "Warp Stone",
+  "item.cakewalk.warp_stone_placed": "Warp Stone",
   "item.cakewalk.cutlass": "Cutlass",
   "item.cakewalk.dragon_scale": "Dragon Scale",
   "item.cakewalk.lead_lined_helmet": "Lead Lined Helmet",
@@ -16,5 +19,7 @@
   "item.cakewalk.dragon_helmet": "Dragon Helmet",
   "item.cakewalk.dragon_chestplate": "Dragon Chestplate",
   "item.cakewalk.dragon_leggings": "Dragon Leggings",
-  "item.cakewalk.dragon_boots": "Dragon Boots"
+  "item.cakewalk.dragon_boots": "Dragon Boots",
+
+  "text.cakewalk.teleport":"Cooldown"
 }
