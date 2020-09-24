@@ -40,7 +40,7 @@ public class GoldenLeadLinedArmorMaterial implements ArmorMaterial {
 
   @Environment(EnvType.CLIENT)
   public String getName() {
-    return "golden_lead_lined_armor";
+    return "golden_lead_armor";
   }
 
   @Override
