@@ -33,5 +33,3 @@ public abstract class EnderDragonEntityMixin extends MobEntity {
   }
 
 }
-// # accessible method
-// Lnet/minecraft/entity/boss/dragon/EnderDragonEntity;updatePostDeath()V

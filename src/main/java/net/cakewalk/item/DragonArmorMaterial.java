@@ -1,10 +1,10 @@
 package net.cakewalk.item;
 
+import net.cakewalk.init.ItemInit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -35,7 +35,7 @@ public class DragonArmorMaterial implements ArmorMaterial {
 
   @Override
   public Ingredient getRepairIngredient() {
-    return Ingredient.ofItems(Items.GOLD_INGOT);
+    return Ingredient.ofItems(ItemInit.DRAGON_SCALE_ITEM);
   }
 
   @Environment(EnvType.CLIENT)

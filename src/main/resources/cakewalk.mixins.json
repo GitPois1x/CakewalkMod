@@ -5,10 +5,14 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "DefaultBiomeFeaturesMixin",
-    "EnderDragonEntityMixin"
+    "EnderDragonEntityMixin",
+    "PlayerEntityMixin",
+    "LivingEntityMixin"
   ],
   "client": [
-    "HeadFeatureRendererMixin"
+    "HeadFeatureRendererMixin",
+    "ElytraFeatureRendererMixin",
+    "ClientPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
