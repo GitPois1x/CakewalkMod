@@ -30,7 +30,7 @@ public class DragonArmorMaterial implements ArmorMaterial {
 
   @Override
   public SoundEvent getEquipSound() {
-    return SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE;
+    return SoundEvents.ITEM_ARMOR_EQUIP_CHAIN;
   }
 
   @Override
@@ -45,12 +45,12 @@ public class DragonArmorMaterial implements ArmorMaterial {
 
   @Override
   public float getToughness() {
-    return 0.0F;
+    return 3.0F;
   }
 
   @Override
   public float getKnockbackResistance() {
-    return 0.0F;
+    return 1.0F;
   }
 
 }

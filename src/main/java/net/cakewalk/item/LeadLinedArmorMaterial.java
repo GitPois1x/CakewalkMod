@@ -45,7 +45,7 @@ public class LeadLinedArmorMaterial implements ArmorMaterial {
 
   @Override
   public float getToughness() {
-    return 0.0F;
+    return 1.0F;
   }
 
   @Override

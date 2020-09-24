@@ -11,7 +11,7 @@ import net.minecraft.sound.SoundEvents;
 
 public class GoldenLeadLinedArmorMaterial implements ArmorMaterial {
   private static final int[] BASE_DURABILITY = new int[] { 14, 15, 16, 12 };
-  private static final int[] PROTECTION_AMOUNTS = new int[] { 2, 5, 6, 2 };
+  private static final int[] PROTECTION_AMOUNTS = new int[] { 2, 4, 5, 2 };
 
   @Override
   public int getDurability(EquipmentSlot equipmentSlot) {
@@ -25,7 +25,7 @@ public class GoldenLeadLinedArmorMaterial implements ArmorMaterial {
 
   @Override
   public int getEnchantability() {
-    return 12;
+    return 25;
   }
 
   @Override
