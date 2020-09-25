@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "blocks/dragonanvil",
-		"particle": "blocks/dragonanvil"
+		"0": "cakewalk:block/dragon_anvil",
+		"particle": "cakewalk:block/dragon_anvil"
 	},
 	"elements": [
 		{

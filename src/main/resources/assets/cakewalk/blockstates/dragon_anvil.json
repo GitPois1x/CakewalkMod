@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cakewalk:block/dragon_anvil",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "cakewalk:block/dragon_anvil",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "cakewalk:block/dragon_anvil"
+    },
+    "facing=west": {
+      "model": "cakewalk:block/dragon_anvil",
+      "y": 90
+    }
+  }
+}

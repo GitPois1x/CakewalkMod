@@ -7,7 +7,8 @@
     "DefaultBiomeFeaturesMixin",
     "EnderDragonEntityMixin",
     "PlayerEntityMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "AnvilScreenHandlerMixin"
   ],
   "client": [
     "HeadFeatureRendererMixin",

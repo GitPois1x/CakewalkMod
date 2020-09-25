@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:anvil"
+  },
+  "addition": {
+    "item": "cakewalk:dragon_scale"
+  },
+  "result": {
+    "item": "cakewalk:dragon_anvil"
+  }
+}
