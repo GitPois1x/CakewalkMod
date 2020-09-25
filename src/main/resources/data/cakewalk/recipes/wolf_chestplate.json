@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "a a",
+    "bab",
+    "bbb"
+  ],
+  "key": {
+    "a": {
+      "item": "cakewalk:leather_strap"
+    },
+    "b": {
+      "item": "cakewalk:wolf_pelt"
+    }
+  },
+  "result": {
+    "item": "cakewalk:wolf_chestplate"
+  }
+}
