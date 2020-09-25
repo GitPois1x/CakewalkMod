@@ -8,7 +8,10 @@
       "item": "minecraft:emerald"
     },
     {
-      "item": "minecraft:redstone"
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "minecraft:quartz"
     },
     {
       "item": "minecraft:ender_pearl"

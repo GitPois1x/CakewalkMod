@@ -1,3 +1,6 @@
 {
-  "parent": "cakewalk:block/pylon_base_block"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cakewalk:item/pylon_base_item"
+  }
 }
