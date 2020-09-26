@@ -21,9 +21,11 @@ public class PylonBaseBlockEntityRenderer extends BlockEntityRenderer<PylonBaseB
       VertexConsumerProvider vertexConsumers, int light, int overlay) {
     if (!blockEntity.isEmpty()) {
       matrices.push();
-      double offset = Math.sin((blockEntity.getWorld().getTime() + tickDelta) / 8.0D) / 6D;
-      matrices.translate(0.5D, 0.7D + offset, 0.5D);
-      //matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion((blockEntity.getWorld().getTime() + tickDelta) * 4F));
+      // double offset = Math.sin((blockEntity.getWorld().getTime() + tickDelta) /
+      // 8.0D) / 6D;
+      // matrices.translate(0.5D, 0.7D + offset, 0.5D);
+      matrices.translate(0.5D, 0.5D, 0.5D);
+      matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion((blockEntity.getWorld().getTime() + tickDelta) * 4F));
       int lightAbove = WorldRenderer.getLightmapCoordinates(blockEntity.getWorld(), blockEntity.getPos().up());
       MinecraftClient.getInstance().getItemRenderer().renderItem(blockEntity.getStack(0),
           ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers);
