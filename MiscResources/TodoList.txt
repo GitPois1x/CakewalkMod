@@ -1,7 +1,0 @@
--Wolf helmet render fix
--Pylon polish (Under way)
--Various name/texture fixes/adjustments (I'll do these very soon)
--Radiation so the lead armor sets have uses
--Cold debuffs so the wolf armor has a use
--Make sure armor stats are working and correct
--Cutlass swing speed fix
