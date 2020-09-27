@@ -32,5 +32,6 @@
   "item.cakewalk.wolf_leggings": "Wolf Leggings",
   "item.cakewalk.wolf_boots": "Wolf Boots",
 
-  "text.cakewalk.teleport":"Cooldown"
+  "text.cakewalk.teleport_cooldown":"Pylon Cooldown",
+  "text.cakewalk.teleport_missing":"Pylon Missing"
 }

@@ -33,7 +33,8 @@ public class HeadFeatureRendererMixin {
   public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i,
       LivingEntity livingEntity, float f, float g, float h, float j, float k, float l, CallbackInfo info) {
     ItemStack itemStack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
-    if (!(itemStack.isEmpty()) && itemStack.getItem() == ItemInit.DRAGON_HELMET) {
+    if (!(itemStack.isEmpty())
+        && (itemStack.getItem() == ItemInit.DRAGON_HELMET || itemStack.getItem() == ItemInit.WOLF_HELMET)) {
       matrixStack.push();
       matrixStack.scale(this.field_24474, this.field_24475, this.field_24476);
       boolean bl = livingEntity instanceof VillagerEntity || livingEntity instanceof ZombieVillagerEntity;

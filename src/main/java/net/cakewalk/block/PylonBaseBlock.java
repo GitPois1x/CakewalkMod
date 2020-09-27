@@ -49,21 +49,26 @@ public class PylonBaseBlock extends Block implements BlockEntityProvider {
     ItemStack stack = blockEntity.getStack(0);
     if (!stack.isEmpty()) {
       if (player.isSneaking()) {
-        player.giveItemStack(stack);
-        blockEntity.clear();
+        if (!world.isClient) {
+          player.giveItemStack(stack);
+          blockEntity.clear();
+        }
       } else {
         PylonBaseBlockEntity pylonblockentity = (PylonBaseBlockEntity) world.getBlockEntity(pos);
         CompoundTag tags = stack.getTag();
-        if (pylonblockentity.teleportTimer <= 0 && tags != null) {
-          double destX = (double) tags.getInt("position_x");
-          double destY = (double) tags.getInt("position_y");
-          double destZ = (double) tags.getInt("position_z");
-          pylonblockentity.teleportTimer = 200;
-          player.teleport(destX, destY, destZ);
+        if (pylonblockentity.teleportTimer <= 0) {
+          if (tags != null) {
+            double destX = (double) tags.getInt("position_x");
+            double destY = (double) tags.getInt("position_y");
+            double destZ = (double) tags.getInt("position_z");
+            pylonblockentity.teleportTimer = 200;
+            player.teleport(destX, destY, destZ);
+          } else {
+            player.sendMessage(new TranslatableText("text.cakewalk.teleport_missing"), true);
+          }
         } else {
-          player.sendMessage(new TranslatableText("text.cakewalk.teleport"), true);
+          player.sendMessage(new TranslatableText("text.cakewalk.teleport_cooldown"), true);
         }
-
       }
 
       return ActionResult.SUCCESS;
@@ -71,10 +76,8 @@ public class PylonBaseBlock extends Block implements BlockEntityProvider {
       ItemStack heldItem = player.getMainHandStack();
       if (heldItem.isItemEqual(new ItemStack(ItemInit.WARP_STONE_ITEM))) {
         if (!world.isClient) {
-          if (!player.isCreative()) {
-            heldItem.decrement(1);
-          }
-          blockEntity.setStack(0, new ItemStack(ItemInit.WARP_STONE_PLACED_ITEM));
+          blockEntity.setStack(0, heldItem.copy());
+          heldItem.decrement(1);
           return ActionResult.SUCCESS;
         } else {
           return ActionResult.SUCCESS;
@@ -110,22 +113,21 @@ public class PylonBaseBlock extends Block implements BlockEntityProvider {
     builder.add(FACING);
   }
 
-  // @Override
-  // public void onStateReplaced(BlockState state, World world, BlockPos pos,
-  // BlockState newState, boolean moved) {
-  // if (!state.isOf(newState.getBlock())) {
-  // BlockEntity blockEntity = world.getBlockEntity(pos);
-  // if (blockEntity instanceof Inventory) {
-  // Inventory inventory = (Inventory) blockEntity;
-  // if (!inventory.isEmpty()) {
-  // ItemScatterer.spawn(world, pos, (Inventory) blockEntity);
-  // world.updateComparators(pos, this);
-  // }
+  @Override
+  public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+    if (!state.isOf(newState.getBlock())) {
+      BlockEntity blockEntity = world.getBlockEntity(pos);
+      if (blockEntity instanceof Inventory) {
+        Inventory inventory = (Inventory) blockEntity;
+        if (!inventory.isEmpty()) {
+          ItemScatterer.spawn(world, pos, (Inventory) blockEntity);
+          world.updateComparators(pos, this);
+        }
 
-  // }
-  // super.onStateReplaced(state, world, pos, newState, moved);
-  // }
-  // }
+      }
+      super.onStateReplaced(state, world, pos, newState, moved);
+    }
+  }
 
   static {
     FACING = HorizontalFacingBlock.FACING;

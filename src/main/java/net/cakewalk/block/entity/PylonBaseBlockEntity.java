@@ -25,13 +25,13 @@ public class PylonBaseBlockEntity extends BlockEntity implements Tickable, Inven
   @Override
   public void tick() {
     if (!this.inventory.isEmpty()) {
-      if (this.world.isClient && this.teleportTimer <= 0) {
-        double d = (double) pos.getX() + (double) world.random.nextFloat();
-        double e = (double) pos.getY() + (double) world.random.nextFloat();
-        double f = (double) pos.getZ() + (double) world.random.nextFloat();
-        this.world.addParticle(ParticleTypes.END_ROD, d, e, f, 0.0D, 0.0D, 0.0D);
-      }
       if (this.teleportTimer > 0) {
+        if (this.world.isClient) {
+          double d = (double) pos.getX() + (double) world.random.nextFloat();
+          double e = (double) pos.getY() + (double) world.random.nextFloat();
+          double f = (double) pos.getZ() + (double) world.random.nextFloat();
+          this.world.addParticle(ParticleTypes.FIREWORK, d, e, f, 0.0D, 0.0D, 0.0D);
+        }
         this.teleportTimer--;
       }
     }
