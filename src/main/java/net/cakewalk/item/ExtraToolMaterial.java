@@ -8,7 +8,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
 
 public enum ExtraToolMaterial implements ToolMaterial {
-  LEAD(0, 200, 1.2F, 3.0F, 24, () -> {
+  LEAD(0, 200, 1.2F, 2.0F, 24, () -> {
     return Ingredient.ofItems(Items.IRON_INGOT);
   });
 

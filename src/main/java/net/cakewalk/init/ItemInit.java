@@ -14,7 +14,7 @@ public class ItemInit {
                         new Item.Settings().group(ItemGroup.MISC));
         public static final WarpStoneItem WARP_STONE_ITEM = new WarpStoneItem(
                         new Item.Settings().group(ItemGroup.MISC));
-        public static final CutlassItem CUTLASS_ITEM = new CutlassItem(ExtraToolMaterial.LEAD, 2, -3.2F,
+        public static final CutlassItem CUTLASS_ITEM = new CutlassItem(ExtraToolMaterial.LEAD, 2, -2F,
                         new Item.Settings().group(ItemGroup.COMBAT));
         public static final DragonScaleItem DRAGON_SCALE_ITEM = new DragonScaleItem(
                         new Item.Settings().group(ItemGroup.MISC));
