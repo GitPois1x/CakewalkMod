@@ -23,16 +23,16 @@
   "item.cakewalk.golden_lead_leggings": "Golden Lead Lined Leggings",
   "item.cakewalk.golden_lead_boots": "Golden Lead Lined Boots",
 
-  "item.cakewalk.dragon_helmet": "Dragon Helmet",
-  "item.cakewalk.dragon_chestplate": "Dragon Chestplate",
-  "item.cakewalk.dragon_leggings": "Dragon Leggings",
-  "item.cakewalk.dragon_boots": "Dragon Boots",
+  "item.cakewalk.dragon_helmet": "Dragon Scale Helmet",
+  "item.cakewalk.dragon_chestplate": "Dragon Scale Chestplate",
+  "item.cakewalk.dragon_leggings": "Dragon Scale Leggings",
+  "item.cakewalk.dragon_boots": "Dragon Scale Boots",
 
-  "item.cakewalk.wolf_helmet": "Wolf Helmet",
-  "item.cakewalk.wolf_chestplate": "Wolf Chestplate",
-  "item.cakewalk.wolf_leggings": "Wolf Leggings",
-  "item.cakewalk.wolf_boots": "Wolf Boots",
+  "item.cakewalk.wolf_helmet": "Wolf Pelt Helmet",
+  "item.cakewalk.wolf_chestplate": "Wolf Pelt Chestplate",
+  "item.cakewalk.wolf_leggings": "Wolf Pelt Leggings",
+  "item.cakewalk.wolf_boots": "Wolf Pelt Boots",
 
   "text.cakewalk.teleport_cooldown":"Pylon Cooldown",
-  "text.cakewalk.teleport_missing":"Pylon Missing"
+  "text.cakewalk.teleport_missing":"No Pylon Linked"
 }
