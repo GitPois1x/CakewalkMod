@@ -61,8 +61,20 @@ public class PylonBaseBlock extends Block implements BlockEntityProvider {
             double destX = (double) tags.getInt("position_x");
             double destY = (double) tags.getInt("position_y");
             double destZ = (double) tags.getInt("position_z");
-            pylonblockentity.teleportTimer = 200;
-            player.teleport(destX, destY, destZ);
+            float player_yaw = tags.getFloat("player_direction");
+            for (int i = -1; i < 2; i++) {
+              for (int u = -1; u < 2; u++) {
+                BlockPos blockPos = new BlockPos(destX + i, destY, destZ + u);
+                if (world.getBlockState(blockPos).isAir() && world.getBlockState(blockPos.down()).isAir()) {
+                  pylonblockentity.teleportTimer = 200;
+                  player.teleport(destX + i, destY, destZ + u);
+                  player.refreshPositionAndAngles(destX, destY, destZ, player_yaw, 1.0F);
+                  break;
+                }
+              }
+
+            }
+
           } else {
             player.sendMessage(new TranslatableText("text.cakewalk.teleport_missing"), true);
           }
@@ -77,7 +89,6 @@ public class PylonBaseBlock extends Block implements BlockEntityProvider {
       if (heldItem.isItemEqual(new ItemStack(ItemInit.WARP_STONE_ITEM))) {
         if (!world.isClient) {
           blockEntity.setStack(0, heldItem.split(1));
-          //heldItem.decrement(1);
           return ActionResult.SUCCESS;
         } else {
           return ActionResult.SUCCESS;
