@@ -24,7 +24,7 @@ public class PylonBaseBlockEntityRenderer extends BlockEntityRenderer<PylonBaseB
     if (!blockEntity.isEmpty()) {
       matrices.push();
       matrices.translate(0.5D, 0.55D, 0.5D);
-      matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion((blockEntity.getWorld().getTime() + tickDelta) * 2F));
+      matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion((blockEntity.getWorld().getTime() + tickDelta)));
       int lightAbove = WorldRenderer.getLightmapCoordinates(blockEntity.getWorld(), blockEntity.getPos().up());
       MinecraftClient.getInstance().getItemRenderer().renderItem(new ItemStack(ItemInit.WARP_STONE_PLACED_ITEM),
           ModelTransformation.Mode.GROUND, lightAbove, 10018511, matrices, vertexConsumers);

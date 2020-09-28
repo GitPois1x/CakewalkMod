@@ -1,17 +1,13 @@
 package net.cakewalk.item;
 
 import net.cakewalk.init.BlockInit;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Style;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -44,12 +40,7 @@ public class WarpStoneItem extends Item {
       tags.putInt("position_z", offPos.getZ());
       tags.putString("player_dimension", player.world.getDimension().toString());// player.world.getDimensionRegistryKey().getValue().toString());
       tags.putFloat("player_direction", player.yaw);
-
-      // TranslatableText msg = new TranslatableText("text.teleporters.crystal_info",
-      // offPos.getX(), offPos.getY(),
-      // offPos.getZ());
-      // msg.setStyle(Style.EMPTY.withColor(Formatting.DARK_PURPLE));
-      // player.sendMessage(msg, true);
+      player.sendMessage(new TranslatableText("item.cakewalk.warp_stone_set_point"), true);
       return ActionResult.PASS;
     }
     return ActionResult.PASS;

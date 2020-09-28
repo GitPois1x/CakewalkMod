@@ -76,8 +76,8 @@ public class PylonBaseBlock extends Block implements BlockEntityProvider {
       ItemStack heldItem = player.getMainHandStack();
       if (heldItem.isItemEqual(new ItemStack(ItemInit.WARP_STONE_ITEM))) {
         if (!world.isClient) {
-          blockEntity.setStack(0, heldItem.copy());
-          heldItem.decrement(1);
+          blockEntity.setStack(0, heldItem.split(1));
+          //heldItem.decrement(1);
           return ActionResult.SUCCESS;
         } else {
           return ActionResult.SUCCESS;

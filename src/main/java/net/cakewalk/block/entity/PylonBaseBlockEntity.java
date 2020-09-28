@@ -27,10 +27,11 @@ public class PylonBaseBlockEntity extends BlockEntity implements Tickable, Inven
     if (!this.inventory.isEmpty()) {
       if (this.teleportTimer > 0) {
         if (this.world.isClient) {
-          double d = (double) pos.getX() + (double) world.random.nextFloat();
-          double e = (double) pos.getY() + (double) world.random.nextFloat();
-          double f = (double) pos.getZ() + (double) world.random.nextFloat();
-          this.world.addParticle(ParticleTypes.FIREWORK, d, e, f, 0.0D, 0.0D, 0.0D);
+          double d = (double) pos.getX() + 0.5D + ((double) world.random.nextFloat() / 8);
+          double e = (double) pos.getY() + 0.2D + ((double) world.random.nextFloat() / 8);
+          double f = (double) pos.getZ() + 0.5D + ((double) world.random.nextFloat() / 8);
+          this.world.addParticle(ParticleTypes.FIREWORK, d, e, f, (world.random.nextDouble() - 0.5D) / 2.0D,
+              -world.random.nextDouble(), (world.random.nextDouble() - 0.5D) / 2.0D);
         }
         this.teleportTimer--;
       }
@@ -40,6 +41,7 @@ public class PylonBaseBlockEntity extends BlockEntity implements Tickable, Inven
   @Override
   public void clear() {
     this.inventory.clear();
+    this.markDirty();
   }
 
   @Override
@@ -73,9 +75,7 @@ public class PylonBaseBlockEntity extends BlockEntity implements Tickable, Inven
   @Override
   public ItemStack removeStack(int slot, int amount) {
     ItemStack result = Inventories.splitStack(this.inventory, slot, 1);
-    if (!result.isEmpty()) {
-      markDirty();
-    }
+    this.markDirty();
     return result;
   }
 
@@ -105,8 +105,22 @@ public class PylonBaseBlockEntity extends BlockEntity implements Tickable, Inven
   private void sendUpdate() {
     if (this.world != null) {
       BlockState state = this.world.getBlockState(this.pos);
-      (this.world).updateListeners(this.pos, state, state, 3);
+      this.world.updateListeners(this.pos, state, state, 3);
     }
+  }
+
+  @Override
+  public void fromTag(BlockState state, CompoundTag tag) {
+    super.fromTag(state, tag);
+    inventory.clear();
+    Inventories.fromTag(tag, inventory);
+  }
+
+  @Override
+  public CompoundTag toTag(CompoundTag tag) {
+    super.toTag(tag);
+    Inventories.toTag(tag, inventory);
+    return tag;
   }
 
 }
