@@ -1,5 +1,6 @@
 package net.cakewalk.item;
 
+import net.cakewalk.block.entity.PylonBaseBlockEntity;
 import net.cakewalk.init.BlockInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -12,7 +13,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.item.HeldItemRenderer;
 
 public class WarpStoneItem extends Item {
@@ -22,22 +23,22 @@ public class WarpStoneItem extends Item {
   }
 
   @Override
-  public ActionResult useOnBlock(ItemUsageContext ctx) {
-    PlayerEntity player = ctx.getPlayer();
+  public ActionResult useOnBlock(ItemUsageContext context) {
+    PlayerEntity player = context.getPlayer();
 
     if (player.isSneaking()
-        && ctx.getWorld().getBlockState(new BlockPos(ctx.getHitPos())).isOf(BlockInit.PYLON_BASE_BLOCK)) {
-      ItemStack stack = ctx.getStack();
+        && context.getWorld().getBlockState(new BlockPos(context.getHitPos())).isOf(BlockInit.PYLON_BASE_BLOCK)) {
+      ItemStack stack = context.getStack();
       CompoundTag tags = stack.getTag();
       if (tags == null) {
         stack.setTag(new CompoundTag());
         tags = stack.getTag();
       }
 
-      BlockPos offPos = ctx.getBlockPos().offset(ctx.getSide());
-      tags.putInt("position_x", offPos.getX());
-      tags.putInt("position_y", offPos.getY());
-      tags.putInt("position_z", offPos.getZ());
+      BlockPos blockPos = context.getBlockPos();
+      tags.putInt("position_x", blockPos.getX());
+      tags.putInt("position_y", blockPos.getY());
+      tags.putInt("position_z", blockPos.getZ());
       tags.putString("player_dimension", player.world.getDimension().toString());// player.world.getDimensionRegistryKey().getValue().toString());
       tags.putFloat("player_direction", player.yaw);
       player.sendMessage(new TranslatableText("item.cakewalk.warp_stone_set_point"), true);
@@ -55,20 +56,24 @@ public class WarpStoneItem extends Item {
       double destY = (double) tags.getInt("position_y");
       double destZ = (double) tags.getInt("position_z");
       float player_yaw = tags.getFloat("player_direction");
-      if (!world.isClient) {
-        for (int i = -1; i < 2; i++) {
-          for (int u = -1; u < 2; u++) {
-            BlockPos blockPos = new BlockPos(destX + i, destY, destZ + u);
-            if (world.getBlockState(blockPos).isAir() && world.getBlockState(blockPos.down()).isAir()) {
-              user.teleport(destX, destY, destZ);
-              user.refreshPositionAndAngles(destX, destY, destZ, player_yaw, 1.0F);
-              user.getItemCooldownManager().set(this, 2400);
-              break;
+      BlockPos pos = new BlockPos(destX, destY, destZ);
+      BlockEntity entity = user.world.getBlockEntity(pos);
+      if (!world.isClient && entity != null && entity instanceof PylonBaseBlockEntity) {
+        PylonBaseBlockEntity pylonBaseBlockEntity = (PylonBaseBlockEntity) entity;
+        if (!pylonBaseBlockEntity.isEmpty()) {
+          for (int i = -1; i < 2; i++) {
+            for (int u = -1; u < 2; u++) {
+              BlockPos blockPos = new BlockPos(destX + i, destY, destZ + u);
+              if (world.getBlockState(blockPos).isAir() && world.getBlockState(blockPos.down()).isAir()) {
+                user.teleport(destX + i, destY, destZ + u);
+                user.refreshPositionAndAngles(destX + i, destY, destZ + u, player_yaw, 1.0F);
+                user.getItemCooldownManager().set(this, 2400);
+                break;
+              }
             }
+
           }
-
         }
-
       }
       user.setCurrentHand(hand);
       return TypedActionResult.consume(stack);
