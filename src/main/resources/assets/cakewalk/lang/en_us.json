@@ -34,5 +34,7 @@
   "item.cakewalk.wolf_boots": "Wolf Pelt Boots",
 
   "text.cakewalk.teleport_cooldown":"Pylon Cooldown",
-  "text.cakewalk.teleport_missing":"No Pylon Linked"
+  "text.cakewalk.teleport_missing":"No Pylon Linked",
+  
+  "death.attack.radiation": "%1$s died of radiation"
 }

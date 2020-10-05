@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "cakewalk:lead_lined_helmet",
+    "cakewalk:lead_lined_chestplate",
+    "cakewalk:lead_lined_leggings",
+    "cakewalk:lead_lined_boots",
+    "cakewalk:golden_lead_helmet",
+    "cakewalk:golden_lead_chestplate",
+    "cakewalk:golden_lead_leggings",
+    "cakewalk:golden_lead_boots"
+  ]
+}

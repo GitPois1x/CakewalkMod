@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.item.HeldItemRenderer;
+import net.minecraft.block.TntBlock;
 
 public class WarpStoneItem extends Item {
 

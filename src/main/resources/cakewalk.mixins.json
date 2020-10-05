@@ -8,12 +8,14 @@
     "EnderDragonEntityMixin",
     "PlayerEntityMixin",
     "LivingEntityMixin",
-    "AnvilScreenHandlerMixin"
+    "AnvilScreenHandlerMixin",
+    "ServerPlayerEntityMixin"
   ],
   "client": [
     "HeadFeatureRendererMixin",
     "ElytraFeatureRendererMixin",
-    "ClientPlayerEntityMixin"
+    "ClientPlayerEntityMixin",
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

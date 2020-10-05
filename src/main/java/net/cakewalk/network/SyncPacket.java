@@ -7,7 +7,7 @@ import net.minecraft.screen.AnvilScreenHandler;
 import net.minecraft.util.Identifier;
 
 public class SyncPacket {
-  public static final Identifier ANVIL_SYNC_PACKET = new Identifier("backslot", "visibility_update");
+  public static final Identifier ANVIL_SYNC_PACKET = new Identifier("cakewalk", "dragon_anvil_sync");
 
   public static void init() {
     ClientSidePacketRegistry.INSTANCE.register(ANVIL_SYNC_PACKET, (context, buffer) -> {
