@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.gen.Accessor;
+import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.At.Shift;
@@ -63,14 +65,14 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Radiatio
     if (!player.isCreative()) {
       this.radiationManager.update(player);
       Optional<RegistryKey<Biome>> optional = world.method_31081(this.getBlockPos());
-      if (this.radiationManager.isNotEmpty() && this.age % 5 == 0
+      if (this.radiationManager.isNotEmpty() && this.age % 10 == 0
           && !Objects.equals(optional, Optional.of(BiomeKeys.BASALT_DELTAS))) {
         this.radiationManager.setRadiationLevel(this.radiationManager.getRadiationLevel() - 1);
       }
       if (Objects.equals(optional, Optional.of(BiomeKeys.BASALT_DELTAS))) {
 
         radiationTimer++;
-        if (radiationTimer % 600 == 0) {
+        if (radiationTimer % (600 + wearsArmorModifier(player)) == 0) {
           radiationManager.add(1);
         }
       } else if (radiationTimer > 0) {
@@ -96,18 +98,66 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Radiatio
     }
   }
 
-  // @ModifyArg(method =
-  // "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V", at = @At(value =
-  // "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;heal(F)V"))
-  // private float tickMovementStopRegenMixin(float f) {
-  // if (this.radiationManager.getRadiationLevel() > 4) {
-  // return 0.0F;
-  // } else
-  // return 1.0F;
-  // }
+//  // @Invoker("Lnet/minecraft/entity/LivingEntity;heal(F)V")
+//   @ModifyArg(method = "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;heal(F)V"))
+//   private float tickMovementStopRegenMixin(float f) {
+//     if (this.radiationManager.getRadiationLevel() > 4) {
+//       return 0.0F;
+//     } else
+//       return 1.0F;
+//   }
 
   @Shadow
   public void startFallFlying() {
   }
+
+  // Go here
+  private static int wearsArmorModifier(LivingEntity livingEntity) {
+    int leadModifier = 0;
+    int wearsArmorModifier = 120;
+    ItemStack headStack = livingEntity.getEquippedStack(EquipmentSlot.HEAD);
+    ItemStack chestStack = livingEntity.getEquippedStack(EquipmentSlot.CHEST);
+    ItemStack legStack = livingEntity.getEquippedStack(EquipmentSlot.LEGS);
+    ItemStack feetStack = livingEntity.getEquippedStack(EquipmentSlot.FEET);
+    if (headStack.isItemEqualIgnoreDamage(new ItemStack(ItemInit.GOLDEN_LEAD_LINED_HELMET))
+        || headStack.isItemEqualIgnoreDamage(new ItemStack(ItemInit.LEAD_LINED_HELMET))) {
+      leadModifier = leadModifier + wearsArmorModifier;
+    }
+    if (chestStack.isItemEqualIgnoreDamage(new ItemStack(ItemInit.GOLDEN_LEAD_LINED_CHESTPLATE))
+        || chestStack.isItemEqualIgnoreDamage(new ItemStack(ItemInit.LEAD_LINED_CHESTPLATE))) {
+      leadModifier = leadModifier + wearsArmorModifier;
+    }
+    if (legStack.isItemEqualIgnoreDamage(new ItemStack(ItemInit.GOLDEN_LEAD_LINED_LEGGINGS))
+        || legStack.isItemEqualIgnoreDamage(new ItemStack(ItemInit.LEAD_LINED_LEGGINGS))) {
+      leadModifier = leadModifier + wearsArmorModifier;
+    }
+    if (feetStack.isItemEqualIgnoreDamage(new ItemStack(ItemInit.GOLDEN_LEAD_LINED_BOOTS))
+        || feetStack.isItemEqualIgnoreDamage(new ItemStack(ItemInit.LEAD_LINED_BOOTS))) {
+      leadModifier = leadModifier + wearsArmorModifier;
+    }
+    return leadModifier;
+  }
+
+  // public abstract class PlayerEntity {
+  // void injectionPointMethod() {
+
+  // }
+
+  // void targetMethod() {
+  // //stuff
+  // this.injectionPointMethod();
+  // //more stuff
+  // }
+  // }
+
+  // @Mixin(TargetClass.class)
+  // public class TargetClassMixin {
+  // @Inject(method = "targetMethod", at = @At(value = "INVOKE", target =
+  // "path.to.TargetClass.injectionPointMethod"))
+  // void targetMethodInjection(CallbackInfo ci) {
+  // //stuff to execute after this.injectionPointMethod call in
+  // TargetClass#targetMethod
+  // }
+  // }
 
 }
