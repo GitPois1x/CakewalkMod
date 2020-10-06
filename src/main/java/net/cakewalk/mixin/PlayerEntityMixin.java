@@ -69,8 +69,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Radiatio
           && !Objects.equals(optional, Optional.of(BiomeKeys.BASALT_DELTAS))) {
         this.radiationManager.setRadiationLevel(this.radiationManager.getRadiationLevel() - 1);
       }
-      if (Objects.equals(optional, Optional.of(BiomeKeys.BASALT_DELTAS))) {
-
+      if (Objects.equals(optional, Optional.of(BiomeKeys.BASALT_DELTAS)) && wearsArmorModifier(player) != 480) {
         radiationTimer++;
         if (radiationTimer % (600 + wearsArmorModifier(player)) == 0) {
           radiationManager.add(1);
@@ -98,14 +97,16 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Radiatio
     }
   }
 
-//  // @Invoker("Lnet/minecraft/entity/LivingEntity;heal(F)V")
-//   @ModifyArg(method = "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;heal(F)V"))
-//   private float tickMovementStopRegenMixin(float f) {
-//     if (this.radiationManager.getRadiationLevel() > 4) {
-//       return 0.0F;
-//     } else
-//       return 1.0F;
-//   }
+  // // @Invoker("Lnet/minecraft/entity/LivingEntity;heal(F)V")
+  // @ModifyArg(method =
+  // "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V", at = @At(value =
+  // "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;heal(F)V"))
+  // private float tickMovementStopRegenMixin(float f) {
+  // if (this.radiationManager.getRadiationLevel() > 4) {
+  // return 0.0F;
+  // } else
+  // return 1.0F;
+  // }
 
   @Shadow
   public void startFallFlying() {
