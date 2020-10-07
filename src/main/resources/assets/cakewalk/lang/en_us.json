@@ -38,5 +38,8 @@
   "text.cakewalk.teleport_cooldown":"Pylon Cooldown",
   "text.cakewalk.teleport_missing":"No Pylon Linked",
   
-  "death.attack.radiation": "%1$s died of radiation"
+  "death.attack.radiation": "%1$s died of radiation",
+  
+  "entity.cakewalk.dire_wolf": "Dire Wolf",
+  "item.cakewalk.spawn_dire_wolf":"Dire Wolf Spawn Egg"
 }
