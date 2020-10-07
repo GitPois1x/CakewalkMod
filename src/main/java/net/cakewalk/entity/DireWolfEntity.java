@@ -102,7 +102,7 @@ public class DireWolfEntity extends WolfEntity {
     double e = this.getBoundingBox().minY;
     double f = this.getZ() + vec3d.z;
     BlockPos.Mutable mutable = new BlockPos.Mutable();
-    UnmodifiableIterator var10 = livingEntity.getPoses().iterator();
+    UnmodifiableIterator<EntityPose> var10 = livingEntity.getPoses().iterator();
 
     while (var10.hasNext()) {
       EntityPose entityPose = (EntityPose) var10.next();

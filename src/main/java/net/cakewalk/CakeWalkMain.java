@@ -12,6 +12,7 @@ public class CakeWalkMain implements ModInitializer {
     ItemInit.init();
     GenInit.init();
     TagInit.init();
+    SpawnInit.init();
   }
 
 }

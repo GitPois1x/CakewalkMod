@@ -5,10 +5,7 @@ import java.util.Optional;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.gen.Accessor;
-import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -138,27 +135,5 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Radiatio
     }
     return leadModifier;
   }
-
-  // public abstract class PlayerEntity {
-  // void injectionPointMethod() {
-
-  // }
-
-  // void targetMethod() {
-  // //stuff
-  // this.injectionPointMethod();
-  // //more stuff
-  // }
-  // }
-
-  // @Mixin(TargetClass.class)
-  // public class TargetClassMixin {
-  // @Inject(method = "targetMethod", at = @At(value = "INVOKE", target =
-  // "path.to.TargetClass.injectionPointMethod"))
-  // void targetMethodInjection(CallbackInfo ci) {
-  // //stuff to execute after this.injectionPointMethod call in
-  // TargetClass#targetMethod
-  // }
-  // }
 
 }
