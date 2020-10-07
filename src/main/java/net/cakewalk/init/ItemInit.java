@@ -22,6 +22,9 @@ public class ItemInit {
         public static final WolfPeltItem WOLF_PELT_ITEM = new WolfPeltItem(new Item.Settings().group(ItemGroup.MISC));
         public static final LeatherStrapItem LEATHER_STRAP_ITEM = new LeatherStrapItem(
                         new Item.Settings().group(ItemGroup.MISC));
+        public static final RadAwayItem RAD_AWAY_ITEM = new RadAwayItem(new Item.Settings().group(ItemGroup.MISC));
+        public static final MarrowBowItem MARROW_BOW_ITEM = new MarrowBowItem(
+                        new Item.Settings().group(ItemGroup.COMBAT).maxDamage(384));
         // Armor
         public static final ArmorMaterial LEAD_LINED_ARMOR_MATERIAL = new LeadLinedArmorMaterial();
         public static final Item LEAD_LINED_HELMET = new LeadLinedArmor(LEAD_LINED_ARMOR_MATERIAL, EquipmentSlot.HEAD,
@@ -74,6 +77,8 @@ public class ItemInit {
                                 WARP_STONE_PLACED_ITEM);
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "leather_strap"), LEATHER_STRAP_ITEM);
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "wolf_pelt"), WOLF_PELT_ITEM);
+                Registry.register(Registry.ITEM, new Identifier("cakewalk", "rad_away"), RAD_AWAY_ITEM);
+                Registry.register(Registry.ITEM, new Identifier("cakewalk", "marrow_bow"), MARROW_BOW_ITEM);
                 // Armor
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "lead_lined_helmet"), LEAD_LINED_HELMET);
                 Registry.register(Registry.ITEM, new Identifier("cakewalk", "lead_lined_chestplate"),

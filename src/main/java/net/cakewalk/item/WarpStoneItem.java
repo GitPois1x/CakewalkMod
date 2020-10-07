@@ -7,15 +7,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.render.item.HeldItemRenderer;
-import net.minecraft.block.TntBlock;
+
+import net.minecraft.block.NetherPortalBlock;
 
 public class WarpStoneItem extends Item {
 
@@ -40,7 +43,11 @@ public class WarpStoneItem extends Item {
       tags.putInt("position_x", blockPos.getX());
       tags.putInt("position_y", blockPos.getY());
       tags.putInt("position_z", blockPos.getZ());
-      tags.putString("player_dimension", player.world.getDimension().toString());// player.world.getDimensionRegistryKey().getValue().toString());
+      if (player.world instanceof ServerWorld) {
+        ServerWorld serverWorld = (ServerWorld) player.world;
+        RegistryKey<World> registryKey = serverWorld.getRegistryKey();
+        tags.putString("player_dimension", registryKey.toString());
+      }
       tags.putFloat("player_direction", player.yaw);
       player.sendMessage(new TranslatableText("item.cakewalk.warp_stone_set_point"), true);
       return ActionResult.PASS;
@@ -57,29 +64,39 @@ public class WarpStoneItem extends Item {
       double destY = (double) tags.getInt("position_y");
       double destZ = (double) tags.getInt("position_z");
       float player_yaw = tags.getFloat("player_direction");
+      String playerDim = tags.getString("player_dimension");
       BlockPos pos = new BlockPos(destX, destY, destZ);
-      BlockEntity entity = user.world.getBlockEntity(pos);
-      if (!world.isClient && entity != null && entity instanceof PylonBaseBlockEntity) {
-        PylonBaseBlockEntity pylonBaseBlockEntity = (PylonBaseBlockEntity) entity;
-        if (!pylonBaseBlockEntity.isEmpty()) {
-          for (int i = -1; i < 2; i++) {
-            for (int u = -1; u < 2; u++) {
-              BlockPos blockPos = new BlockPos(destX + i, destY, destZ + u);
-              if (world.getBlockState(blockPos).isAir() && world.getBlockState(blockPos.down()).isAir()) {
-                user.teleport(destX + i, destY, destZ + u);
-                user.refreshPositionAndAngles(destX + i, destY, destZ + u, player_yaw, 1.0F);
-                user.getItemCooldownManager().set(this, 2400);
-                break;
+      if (user.world instanceof ServerWorld) {
+        ServerWorld serverWorld = (ServerWorld) user.world;
+        RegistryKey<World> registryKey = serverWorld.getRegistryKey();
+        MinecraftServer minecraftServer = serverWorld.getServer();
+        ServerWorld serverWorld2 = minecraftServer.getWorld(registryKey);
+        BlockEntity entity = serverWorld2.getBlockEntity(pos);
+        if (!world.isClient && entity != null && entity instanceof PylonBaseBlockEntity) {
+          PylonBaseBlockEntity pylonBaseBlockEntity = (PylonBaseBlockEntity) entity;
+          if (!pylonBaseBlockEntity.isEmpty()) {
+            for (int i = -1; i < 2; i++) {
+              for (int u = -1; u < 2; u++) {
+                BlockPos blockPos = new BlockPos(destX + i, destY, destZ + u);
+                if (world.getBlockState(blockPos).isAir() && world.getBlockState(blockPos.down()).isAir()) {
+                  if (!playerDim.equals(registryKey.toString())) {
+                    user.moveToWorld(serverWorld2);
+                  }
+                  user.teleport(destX + i, destY, destZ + u);
+                  user.refreshPositionAndAngles(destX + i, destY, destZ + u, player_yaw, 1.0F);
+                  user.getItemCooldownManager().set(this, 2400);
+                  break;
+                }
               }
-            }
 
+            }
           }
+          user.setCurrentHand(hand);
+          return TypedActionResult.consume(stack);
         }
       }
-      user.setCurrentHand(hand);
-      return TypedActionResult.consume(stack);
-    } else
-      return TypedActionResult.pass(user.getStackInHand(hand));
-  }
+    }
+    return TypedActionResult.pass(user.getStackInHand(hand));
 
+  }
 }
