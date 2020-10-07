@@ -9,8 +9,6 @@ import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.CompositeEntityModel;
 import net.minecraft.util.math.MathHelper;
 
-import net.minecraft.client.render.entity.model.WolfEntityModel;
-
 @Environment(EnvType.CLIENT)
 public class DireWolfModel<T extends DireWolfEntity> extends CompositeEntityModel<T> {
   private final ModelPart head;
@@ -116,7 +114,7 @@ public class DireWolfModel<T extends DireWolfEntity> extends CompositeEntityMode
   }
 
   @Override
-  public void setAngles(T stoneGolem, float f, float g, float h, float i, float j) {
+  public void setAngles(T wolf, float f, float g, float h, float i, float j) {
     this.neckFur.pitch = -0.2618F;
     this.backFurL.yaw = -0.3491F;
     this.backFurR.yaw = 0.3491F;
@@ -124,28 +122,15 @@ public class DireWolfModel<T extends DireWolfEntity> extends CompositeEntityMode
     this.earL.yaw = 0.4363F;
     this.earR.yaw = -0.4363F;
     this.tailTip.pitch = 0.3927F;
-    // setRotationAngle(neckFur, -0.2618F, 0.0F, 0.0F);
-    // setRotationAngle(backFurL, 0.0F, -0.3491F, 0.0F);
-    // setRotationAngle(backFurR, 0.0F, 0.3491F, 0.0F);
-    // setRotationAngle(tail, 0.2182F, 0.0F, 0.0F);
-    // setRotationAngle(head, 0.0F, 0.0F, 0.0F);
-    // setRotationAngle(earL, 0.0F, 0.4363F, 0.0F);
-    // setRotationAngle(earR, 0.0F, -0.4363F, 0.0F);
-    // setRotationAngle(tailTip, 0.3927F, 0.0F, 0.0F);
     this.head.yaw = i * 0.0077453292F;
     this.head.pitch = j * 0.0017453292F;
     this.legBackR.pitch = MathHelper.cos(f * 0.6662F) * 1.4F * g;
     this.legBackL.pitch = MathHelper.cos(f * 0.6662F + 3.1415927F) * 1.4F * g;
     this.frontLegR.pitch = MathHelper.cos(f * 0.6662F + 3.1415927F) * 1.4F * g;
     this.frontLegL.pitch = MathHelper.cos(f * 0.6662F) * 1.4F * g;
-    // this.rightLeg.yaw = 0.0F;
-    // this.leftLeg.yaw = 0.0F;
-    // this.rightLeg.pitch = -0.3F * MathHelper.method_24504(f, 13.0F) * g +
-    // 0.1745F;
-    // this.leftLeg.pitch = 0.3F * MathHelper.method_24504(f, 13.0F) * g + 0.1745F;
-    // this.torso.pitch = 0.7854F;
-    // this.rightArm.pitch = 0.5F * MathHelper.method_24504(f, 13.0F) * g - 0.5236F;
-    // this.leftArm.pitch = -0.5F * MathHelper.method_24504(f, 13.0F) * g - 0.5236F;
+    if (wolf.isInSittingPose()) {
+
+    }
 
   }
 
