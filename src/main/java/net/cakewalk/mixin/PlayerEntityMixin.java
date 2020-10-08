@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -94,22 +95,18 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Radiatio
     }
   }
 
-  // // @Invoker("Lnet/minecraft/entity/LivingEntity;heal(F)V")
-  // @ModifyArg(method =
-  // "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V", at = @At(value =
-  // "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;heal(F)V"))
-  // private float tickMovementStopRegenMixin(float f) {
-  // if (this.radiationManager.getRadiationLevel() > 4) {
-  // return 0.0F;
-  // } else
-  // return 1.0F;
-  // }
+  @ModifyArg(method = "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;heal(F)V"))
+  private float tickMovementStopRegenMixin(float f) {
+    if (this.radiationManager.getRadiationLevel() > 4) {
+      return 0.0F;
+    } else
+      return f;
+  }
 
   @Shadow
   public void startFallFlying() {
   }
 
-  // Go here
   private static int wearsArmorModifier(LivingEntity livingEntity) {
     int leadModifier = 0;
     int wearsArmorModifier = 120;
