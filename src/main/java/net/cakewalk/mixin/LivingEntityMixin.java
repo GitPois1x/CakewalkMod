@@ -25,8 +25,7 @@ public abstract class LivingEntityMixin extends Entity {
   @ModifyArg(method = "Lnet/minecraft/entity/LivingEntity;initAi()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setFlag(IZ)V"), index = 1)
   private boolean initAiMixin(boolean value) {
     boolean bl = this.getFlag(7);
-    Object object = this;
-    LivingEntity livingEntity = (LivingEntity) object;
+    LivingEntity livingEntity = (LivingEntity) (Object) this;
     ItemStack itemStack = livingEntity.getEquippedStack(EquipmentSlot.CHEST);
     if (bl && !this.onGround && !this.hasVehicle() && itemStack.getItem() == ItemInit.DRAGON_CHESTPLATE) {
       return true;

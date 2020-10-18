@@ -52,8 +52,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements Radiatio
 
   @Inject(method = "Lnet/minecraft/entity/player/PlayerEntity;tick()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/HungerManager;update(Lnet/minecraft/entity/player/PlayerEntity;)V", shift = Shift.AFTER))
   private void tickMixinTwo(CallbackInfo info) {
-    Object object = this;
-    PlayerEntity player = (PlayerEntity) object;
+    PlayerEntity player = (PlayerEntity) (Object) this;
     this.radiationManager.update(player);
   }
 
